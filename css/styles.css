@@ -1,0 +1,25 @@
+.app-container {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.login-card {
+	width: 24rem;
+}
+
+footer {
+	background-color: #f5f5f5;
+	position: sticky;
+	bottom: 0px;
+	width: 100%;
+	right: 0px;
+}
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
+}
+
+@media screen and (max-width:767px) {
+	.login-card {
+		width: 18rem;
+	}
+}
