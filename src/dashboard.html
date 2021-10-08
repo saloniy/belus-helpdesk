@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ticket Details</title>
+    <title>Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -41,71 +41,60 @@
             </div>
         </nav>
         <!--header content ends-->
-        <!--form content -->
         <div class="container">
             <div class="row mt-4">
-                <div class="col-sm-1">
-                    <!-- can be seen only by customer-->
-                    <button type="button" class="btn btn-success btn-sm">RE-OPEN</button>
-                </div>
-                <div class="col-sm-8">
-                    <div>
-                        <b>Ticket #788</b>
-                    </div>
-                    <div>
-                        Reported by : Ganesh Thampi
-                    </div>
-                </div>
-                <!-- can be seen only by CSR -->
-                <div class="col-sm-3">
-                    <button type="button" class="btn btn-warning  btn-lg">Close</button>
-                    <button type="button" class="btn btn-secondary  btn-lg">Process</button>
-                    <button type="button" class="btn btn-danger  btn-lg">Delete</button>
-                </div>
-                <!-- end -->
-            </div>
-            <div class="row mt-5">
-                <table class="table table-dark table-striped">
-                    <thead>
-                        <tr>
-                            <th class="display-6">Ticket Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="fw-bold" colspan="2">Status : </td>
-                            <td colspan="2"> OPEN </td>
-                            <td class="fw-bold" colspan="2">User : </td>
-                            <td class="text-end" > Ganesh Thampi </td>
-                        </tr>
-
-                        <tr>
-                            <td class="fw-bold"  colspan="2">Priority : </td>
-                            <td colspan="2"> NORMAL </td>
-                            <td class="fw-bold" colspan="2">Email : </td>
-                            <td class="text-end"> ganeshthampi077@gmail.com</td>
-                        </tr>
-                        <tr>
-                            <td class="fw-bold" colspan="2">Plan : </td>
-                            <td colspan="2" > UL-40MBPS </td>
-                            <td class="fw-bold" colspan="2">Complaint : </td>
-                            <td class="text-end"> Internet Very Slow </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <textarea class="form-control" rows="1" readonly>#20.12.2021 - Customer reports low internet speed. Need to check router settings.</textarea>
-                    <textarea class="form-control" rows="1" readonly>#25.12.2021 - The router is fine.</textarea>
-                    <textarea class="form-control" id="comment" name="comment" rows="2" placeholder="Enter your comment"></textarea>
-                    <div class="text-end mt-3">
-                        <button type="button" class="btn btn-primary">Add comment</button>
-                    </div>
+                <div class="col-12 text-center">
+                    <h1>All tickets</h1>
                 </div>
             </div>
+            <div class="row my-3">
+                <div class="col-6">
+                    <button type="button"  class="btn btn-secondary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown">
+                        <span><i class="fas fa-filter"></i> Filter by status</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-item">Open</li>
+                        <li class="dropdown-item">In-Progress</li>
+                        <li class="dropdown-item">Resolved</li>
+                        <li class="dropdown-item">Closed</li>
+                    </ul>
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <!-- only visible to customer -->
+                    <button class="btn btn-success">Raise New Issue</button>
+                </div>
+            </div>
+            <table class="table table-light">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Issue Summary</th>
+                    <th scope="col">Issue Status</th>
+                    <th scope="col">Date Issue Raised <i class="fas fa-sort ms-2"></i></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Internet not working</td>
+                    <td>In Progress</td>
+                    <td>12/01/2021</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Router restarting on its own</td>
+                    <td>Open</td>
+                    <td>13/03/2021</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Sites not accessible</td>
+                    <td>Closed</td>
+                    <td>07/07/2021</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <!-- form content ends -->
     </div>
     <!--footer content -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -136,5 +125,4 @@
     <!--footer content ends-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 </body>
-
 </html>
