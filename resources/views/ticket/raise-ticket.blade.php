@@ -1,17 +1,17 @@
 @extends('layout/main')
 @section('raiseTicket')
-<div class="container-fluid app-container min-vh-100">
-    <h2 class="text-center">Customer Raise Ticket Form</h2>
+<div class="container mt-3">
+    <h2 class="text-center"> Raise Ticket </h2>
     <!--form content -->
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Issue Summary</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Issue Description</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
     <form class="row g-3">
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Issue Summary</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Issue Description</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
         <div class="col-md-6">
             <label for="inputName4" class="form-label">Name</label>
             <input type="name" class="form-control" id="inputName4">

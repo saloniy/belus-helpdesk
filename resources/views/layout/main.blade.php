@@ -40,12 +40,16 @@
         </div>
     </nav>
     <!--header content ends-->
-    @yield('login')
-    @yield('signup')
-    @yield('myProfile')
-    @yield('ticketsSummary')
-    @yield('raiseTicket')
-    @yield('ticketDetails')
+    <div class="container-fluid app-container min-vh-100">
+        <div class="container">
+            @yield('login')
+            @yield('signup')
+            @yield('myProfile')
+            @yield('ticketsSummary')
+            @yield('raiseTicket')
+            @yield('ticketDetails')
+        </div>
+    </div>
 <!--footer content -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="facebook" viewBox="0 0 16 16">
