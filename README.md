@@ -30,3 +30,9 @@ Then, raise a Pull Request against `main` branch
 - If working on an existing branch, before resuming work, remember to run : `git pull origin main` 
 to ensure your branch is in sync with the remote `main` branch
 
+
+# Table structure and relation:
+
+![image](https://user-images.githubusercontent.com/12690997/143786659-12020b60-65f6-4f91-8a19-413353dfc672.png)
+
+
