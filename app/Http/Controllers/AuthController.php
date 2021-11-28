@@ -55,12 +55,16 @@ class AuthController extends Controller
             ]);
             $data = User::all(['email','password','isCustomer', 'isAdmin'])->where('email', '=', $request->csrEmail)->where('password', '=', $request->csrPassword)->where('isCustomer', '=','0');
         }
+
+
         if(count($data) > 0) {
-            session()->put('username', $request->email);
-            if(!$isCustomer && $data['1']['isAdmin'] == 1){
-                return redirect('/admin-controls');
+            session()->put('username',$isCustomer?$request->email:$request->csrEmail);
+            if(!$isCustomer && $data[0]['isAdmin'] == 1){
+               return redirect('/admin-controls');
             } else {
-                return redirect('/tickets-summary');
+               return redirect('/tickets-summary');
+
+
             }
         } else if($isCustomer) {
              return redirect('/')->withErrors(['noAccount' => $invalidAccount])->withInput();

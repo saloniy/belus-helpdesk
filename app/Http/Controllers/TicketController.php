@@ -18,9 +18,9 @@ class TicketController extends Controller
     public function getTicketsSummary() {
         $isSession = self::validateSession();
         if($isSession) {
-            return view('ticket/tickets-summary');
+          return view('ticket/tickets-summary');
         } else {
-            return redirect('/');
+          return redirect('/');
         }
     }
 
