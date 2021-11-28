@@ -17,10 +17,11 @@ class TicketController extends Controller
 
     public function getTicketsSummary() {
         $isSession = self::validateSession();
-        if($isSession) {
+      if($isSession) {
+
             return view('ticket/tickets-summary');
-        } else {
-            return redirect('/');
+       } else {
+           return redirect('/');
         }
     }
 
