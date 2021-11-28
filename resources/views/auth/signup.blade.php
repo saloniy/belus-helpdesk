@@ -11,7 +11,6 @@
                     @if($errors->first('emailExists'))
                     <div class="alert alert-danger">{{$errors->first('emailExists')}}</div>
                     @endif
-                    <input type="hidden" name="id" value="@php echo rand(0, 1000); @endphp" />
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
@@ -48,8 +47,6 @@
                         <div class="error-msg">{{ $message }}</div>
                         @enderror
                     </div>
-                    <input type="hidden" name="isAdmin" value="0"/>
-                    <input type="hidden" name="isCustomer" value="1"/>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                     </div>

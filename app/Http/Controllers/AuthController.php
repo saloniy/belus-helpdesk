@@ -96,7 +96,11 @@ class AuthController extends Controller
             'cpassword.same' => 'The value should match the input password'
         ]);
         try {
-            User::create($request->all());
+            $data = $request->all();
+            $data['id'] = rand(0,1000);
+            $data['isCustomer'] = 1;
+            $data['isAdmin'] = 0;
+            User::create($data);
             session()->put('username', $request->email);
             return redirect('/tickets-summary');
         } catch (QueryException $e) {
