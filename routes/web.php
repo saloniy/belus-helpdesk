@@ -2,6 +2,7 @@
 
 use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\TicketController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,15 @@ Route::get('/', [AuthController::class, 'login']);
 
 Route::get('/signup', [AuthController::class, 'signup']);
 
+Route::get('/logout', [AuthController::class, 'logout']);
+
+Route::post('/loginUser', [AuthController::class, 'loginUser']);
+
+Route::post('/newUserSignup', [AuthController::class, 'newUserSignup']);
+
 Route::get('/profile', [AuthController::class, 'profile']);
+
+Route::get('/admin-controls', [UserController::class, 'index']);
 
 Route::get('/tickets-summary', [TicketController::class, 'getTicketsSummary']);
 
