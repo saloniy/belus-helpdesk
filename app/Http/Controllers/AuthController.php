@@ -56,12 +56,11 @@ class AuthController extends Controller
             $data = User::all(['email','password','isCustomer', 'isAdmin'])->where('email', '=', $request->csrEmail)->where('password', '=', $request->csrPassword)->where('isCustomer', '=','0');
         }
 
-        echo $data;
 
         if(count($data) > 0) {
             session()->put('username',$isCustomer?$request->email:$request->csrEmail);
             if(!$isCustomer && $data[0]['isAdmin'] == 1){
-              return redirect('/admin-controls');
+               return redirect('/admin-controls');
             } else {
                return redirect('/tickets-summary');
 
