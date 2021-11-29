@@ -22,7 +22,7 @@ class TicketController extends Controller
         if($isSession ) {
                 $csrCheck = session()->get('CSRcheck');
                 if($csrCheck){
-                    $data = Ticket::all();
+                    $data = Ticket::all()->where('assigned_to', '=', session()->get('username'));
                     return view('ticket/tickets-summaryCSR',['data' => $data]);
                 }
                 else {
