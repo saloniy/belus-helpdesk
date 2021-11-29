@@ -27,7 +27,7 @@
         @enderror
         <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Email</label>
-            <input type="email" class="form-control" id="inputEmail4" readonly>
+            <input type="email" value="{{$email}}" class="form-control" id="inputEmail4" readonly>
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Submit Ticket</button>

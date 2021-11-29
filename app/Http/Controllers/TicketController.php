@@ -46,8 +46,9 @@ class TicketController extends Controller
 
     public function raiseTicket() {
         $isSession = self::validateSession();
+        $email = session()->get('username');
         if($isSession) {
-            return view('ticket/raise-ticket');
+            return view('ticket/raise-ticket',compact('email'));
         } else {
             return redirect('/');
         }
@@ -60,7 +61,7 @@ class TicketController extends Controller
         'description'=> request('description'),
         'status'=>'open',
         'raised_on'=> Carbon::now(),
-        'raised_by'=> 'praveesudharsanans',
+        'raised_by'=> session()->get('username'),
         'priority' =>'High'
     ]);
         return redirect('raise-ticket')->with('message','Ticket Raised Succesfully');
