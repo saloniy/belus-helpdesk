@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class TicketController extends Controller
 {
@@ -40,5 +42,18 @@ class TicketController extends Controller
         } else {
             return redirect('/');
         }
+
+    }
+
+    public  function createTicket(Request $request){
+     $request->validate(['summary' =>'required','description' =>'required']);
+    Ticket::create(['summary'=> request('summary'),
+        'description'=> request('description'),
+        'status'=>'open',
+        'raised_on'=> Carbon::now(),
+        'raised_by'=> 'praveesudharsanans',
+        'priority' =>'High'
+    ]);
+        return redirect('raise-ticket')->with('message','Ticket Raised Succesfully');
     }
 }
