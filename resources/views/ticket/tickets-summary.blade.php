@@ -20,7 +20,7 @@
         </div>
         <div class="col-6 d-flex justify-content-end">
             <!-- only visible to customer -->
-            <button class="btn btn-success">Raise New Issue</button>
+            <a href="{{url('raise-ticket')}}" class="btn btn-success" >Raise New Issue</a>
         </div>
     </div>
     <table class="table table-light">

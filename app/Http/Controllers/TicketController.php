@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Ticket;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Models\User;
 
 class TicketController extends Controller
 {
@@ -45,10 +46,24 @@ class TicketController extends Controller
 
     public function raiseTicket() {
         $isSession = self::validateSession();
+        $email = session()->get('username');
         if($isSession) {
-            return view('ticket/raise-ticket');
+            return view('ticket/raise-ticket',compact('email'));
         } else {
             return redirect('/');
         }
+
+    }
+
+    public  function createTicket(Request $request){
+     $request->validate(['summary' =>'required','description' =>'required']);
+    Ticket::create(['summary'=> request('summary'),
+        'description'=> request('description'),
+        'status'=>'open',
+        'raised_on'=> Carbon::now(),
+        'raised_by'=> session()->get('username'),
+        'priority' =>'High'
+    ]);
+        return redirect('raise-ticket')->with('message','Ticket Raised Succesfully');
     }
 }

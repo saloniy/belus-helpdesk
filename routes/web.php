@@ -35,3 +35,5 @@ Route::get('/tickets-summary', [TicketController::class, 'getTicketsSummary']);
 Route::get('/ticket-details', [TicketController::class, 'getTicketDetails']);
 
 Route::get('/raise-ticket', [TicketController::class, 'raiseTicket']);
+
+Route::post('/raise-ticket',[TicketController::class,'createTicket']);
