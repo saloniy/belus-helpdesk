@@ -21,7 +21,9 @@ class CreateTicketsTable extends Migration
             $table->string('status',15);
             $table->string('priority',15);
             $table->string('raised_by', 25);
+            $table->string('assigned_to', 25);
             $table->foreign('raised_by')->references('email')->on('users');
+            $table->foreign('assigned_to')->references('email')->on('users');
         });
     }
 
