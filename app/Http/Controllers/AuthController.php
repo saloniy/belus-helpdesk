@@ -59,6 +59,8 @@ class AuthController extends Controller
 
         if(count($data) > 0) {
             session()->put('username',$isCustomer?$request->email:$request->csrEmail);
+            session()->put('CSRcheck',$isCustomer?false:true);
+
             if(!$isCustomer && $data[0]['isAdmin'] == 1){
                return redirect('/admin-controls');
             } else {
