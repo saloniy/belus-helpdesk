@@ -26,7 +26,8 @@ class TicketController extends Controller
                     return view('ticket/tickets-summaryCSR',['data' => $data]);
                 }
                 else {
-                    return view('ticket/tickets-summary');
+                    $data = Ticket::all()->where('raised_by', '=', session()->get('username'));
+                    return view('ticket/tickets-summary',['data' => $data]);
                 }
             }
           else {
