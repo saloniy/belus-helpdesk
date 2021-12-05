@@ -35,29 +35,11 @@
         <tbody>
         @foreach($data as $d)
             <tr>
-                <th scope="row">1</th>
+                <th scope="row">{{$d->id}}</th>
                 <td>{{$d->summary}}</td>
                 <td>{{$d->status}}</td>
                 <td>{{$d->raised_on}}</td>
             </tr>
-{{--        <tr>--}}
-{{--            <th scope="row">1</th>--}}
-{{--            <td>Internet not working</td>--}}
-{{--            <td>In Progress</td>--}}
-{{--            <td>12/01/2021</td>--}}
-{{--        </tr>--}}
-{{--        <tr>--}}
-{{--            <th scope="row">2</th>--}}
-{{--            <td>Router restarting on its own</td>--}}
-{{--            <td>Open</td>--}}
-{{--            <td>13/03/2021</td>--}}
-{{--        </tr>--}}
-{{--        <tr>--}}
-{{--            <th scope="row">2</th>--}}
-{{--            <td>Sites not accessible</td>--}}
-{{--            <td>Closed</td>--}}
-{{--            <td>07/07/2021</td>--}}
-{{--        </tr>--}}
             @endforeach
         </tbody>
     </table>

@@ -9,5 +9,5 @@ class Ticket extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ['id', 'summary', 'description','raised_on','status','priority','raised_by'];
+    protected $fillable = ['id', 'summary', 'description','raised_on','status','priority','raised_by','assigned_to'];
 }
