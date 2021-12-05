@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('name', 50);
             $table->string('password', 15);
             $table->string('contact', 15);
+            $table->string('address', 100);
             $table->boolean('isAdmin');
             $table->boolean('isCustomer');
         });
