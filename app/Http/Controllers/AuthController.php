@@ -56,15 +56,13 @@ class AuthController extends Controller
             $data = User::all(['email','password','isCustomer', 'isAdmin'])->where('email', '=', $request->csrEmail)->where('password', '=', $request->csrPassword)->where('isCustomer', '=','0')->values();
         }
         if(count($data) > 0) {
-            session()->put('username',$isCustomer?$request->email:$request->csrEmail);
-            session()->put('CSRcheck',$isCustomer?false:true);
+            session()->put('username', $isCustomer ? $request->email : $request->csrEmail);
+            session()->put('CSRcheck', $isCustomer ? false : true);
 
             if(!$isCustomer && $data[0]['isAdmin'] == 1){
-               return redirect('/admin-all-users');
+                return redirect('/admin-all-users');
             } else {
-               return redirect('/tickets-summary');
-
-
+                return redirect('/tickets-summary');
             }
         } else if($isCustomer) {
              return redirect('/')->withErrors(['noAccount' => $invalidAccount])->withInput();
@@ -104,8 +102,10 @@ class AuthController extends Controller
             $data['id'] = rand(0,1000);
             $data['isCustomer'] = 1;
             $data['isAdmin'] = 0;
+            $data['address'] = "";
             User::create($data);
             session()->put('username', $request->email);
+            session()->put('CSRcheck', false);
             return redirect('/tickets-summary');
         } catch (QueryException $e) {
             $errorCode = $e->errorInfo[1];
