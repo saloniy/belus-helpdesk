@@ -24,7 +24,7 @@ class AdminController extends Controller
             $userData = User::all();
             return view('admin.all-users', compact('userData'));
         } else {
-            return view('auth/login');
+            return redirect('/');
         }
 
     }
@@ -43,6 +43,8 @@ class AdminController extends Controller
             $openTickets = Ticket::all()->where('status', '=', 'Open')->values();
             $csr = User::all()->where('isCustomer', '=', 0)->where('isAdmin', '=', 0)->values();
             return view('admin.open-tickets', compact('openTickets', 'csr'));
+        } else {
+            return redirect('/');
         }
     }
 
