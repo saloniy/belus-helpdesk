@@ -16,7 +16,7 @@
                 </ul>
                 <div class="tab-content" id="loginTabContent">
                     <div class="tab-pane fade show active" id="customer" role="tabpanel" aria-labelledby="customer-tab">
-                        <form method="post" action="{{url('loginUser')}}" novalidate>
+                        <form method="post" action="{{url('login-user')}}" novalidate>
                             @csrf
                             @if($errors->first('noAccount'))
                                 <div class="alert alert-danger" id="noAccount">{{$errors->first('noAccount')}}</div>
@@ -43,7 +43,7 @@
                         <p class="mb-2 text-muted">New User with Belus? <a class="text-decoration-none" href="/signup">Sign up</a> now!</p>
                     </div>
                     <div class="tab-pane fade" id="support" role="tabpanel" aria-labelledby="support-tab">
-                        <form method="post" action="{{url('loginUser')}}" novalidate>
+                        <form method="post" action="{{url('login-user')}}" novalidate>
                             @csrf
                             @if($errors->first('noCsrAccount'))
                                 <div class="alert alert-danger" id="noCsrAccount">{{$errors->first('noCsrAccount')}}</div>

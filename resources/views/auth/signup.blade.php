@@ -7,7 +7,7 @@
             <div class="card-body">
                 <h5 class="card-title">Sign Up</h5>
 
-                <form method="post" action="{{url('newUserSignup')}}" novalidate>
+                <form method="post" action="{{url('new-user-signup')}}" novalidate>
                     @if($errors->first('emailExists'))
                     <div class="alert alert-danger">{{$errors->first('emailExists')}}</div>
                     @endif

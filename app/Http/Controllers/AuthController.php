@@ -44,7 +44,7 @@ class AuthController extends Controller
             ], [
                 'email.required' => 'Please enter registered email.',
             ]);
-            $data = User::all(['email','password','isCustomer', 'isAdmin'])->where('email', '=', $request->email)->where('password', '=', $request->password)->where('isCustomer', '=','1');
+            $data = User::all(['email','password','isCustomer', 'isAdmin'])->where('email', '=', $request->email)->where('password', '=', $request->password)->where('isCustomer', '=','1')->values();
         } else {
             $request->validate([
                 'csrEmail' => 'required|email:rfc',
@@ -53,16 +53,14 @@ class AuthController extends Controller
                 'csrEmail.required' => 'Please enter registered email.',
                 'csrPassword.required' => 'The password field is required.'
             ]);
-            $data = User::all(['email','password','isCustomer', 'isAdmin'])->where('email', '=', $request->csrEmail)->where('password', '=', $request->csrPassword)->where('isCustomer', '=','0');
+            $data = User::all(['email','password','isCustomer', 'isAdmin'])->where('email', '=', $request->csrEmail)->where('password', '=', $request->csrPassword)->where('isCustomer', '=','0')->values();
         }
-
-
         if(count($data) > 0) {
             session()->put('username',$isCustomer?$request->email:$request->csrEmail);
             session()->put('CSRcheck',$isCustomer?false:true);
 
-            if(!$isCustomer && $data['1']['isAdmin'] == 1){
-               return redirect('/admin-controls');
+            if(!$isCustomer && $data[0]['isAdmin'] == 1){
+               return redirect('/admin-all-users');
             } else {
                return redirect('/tickets-summary');
 
