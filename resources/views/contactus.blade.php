@@ -1,5 +1,5 @@
-@extends('layout.main')
-@section('contactUs')
+@extends('layout/main')
+@section('getContact')
     <!--Section: Contact v.2-->
     <section class="mb-4">
 
@@ -8,12 +8,18 @@
         <!--Section description-->
         <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
             a matter of hours to help you.</p>
+        @if(session('message'))
+            <div class="alert alert-success">
+                {{ session('message')}}
+            </div>
+        @endif
 
         <div class="row">
 
             <!--Grid column-->
             <div class="col-md-9 mb-md-0 mb-5">
-                <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                <form   action="{{url('contactus')}}" method="post">
+                @csrf
 
                     <!--Grid row-->
                     <div class="row">
@@ -24,6 +30,9 @@
                                 <input type="text" id="name" name="name" class="form-control">
                                 <label for="name" class="">Your name</label>
                             </div>
+                            @error('name')
+                            <div class="alert-danger">{{$errors->first('name')}}</div>
+                            @enderror
                         </div>
                         <!--Grid column-->
 
@@ -33,6 +42,9 @@
                                 <input type="text" id="email" name="email" class="form-control">
                                 <label for="email" class="">Your email</label>
                             </div>
+                            @error('email')
+                            <div class="alert-danger">{{$errors->first('email')}}</div>
+                            @enderror
                         </div>
                         <!--Grid column-->
 
@@ -47,6 +59,9 @@
                                 <label for="subject" class="">Subject</label>
                             </div>
                         </div>
+                        @error('subject')
+                        <div class="alert-danger">{{$errors->first('subject')}}</div>
+                        @enderror
                     </div>
                     <!--Grid row-->
 
@@ -60,16 +75,20 @@
                                 <textarea type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea>
                                 <label for="message">Your message</label>
                             </div>
+                            @error('message')
+                            <div class="alert-danger">{{$errors->first('message')}}</div>
+                            @enderror
 
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary">Send</button>
                         </div>
                     </div>
                     <!--Grid row-->
 
                 </form>
 
-                <div class="text-center text-md-left">
-                    <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">Send</a>
-                </div>
+
                 <div class="status"></div>
             </div>
             <!--Grid column-->
@@ -91,7 +110,6 @@
                 </ul>
             </div>
             <!--Grid column-->
-
         </div>
 
     </section>

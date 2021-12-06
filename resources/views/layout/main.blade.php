@@ -20,10 +20,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href="{{url('aboutus')}}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Help</a>
+                        <a class="nav-link" href="{{url('faq')}}">Help</a>
                     </li>
                     @if (session()->get('username')) {
                         <!-- show my profile when user logs in-->
@@ -51,6 +51,9 @@
             @yield('ticketsSummary')
             @yield('raiseTicket')
             @yield('ticketDetails')
+            @yield(('getContact'))
+            @yield('aboutUs')
+            @yield('faq')
         </div>
     </div>
 <!--footer content -->
