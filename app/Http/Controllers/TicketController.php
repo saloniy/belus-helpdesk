@@ -63,7 +63,7 @@ class TicketController extends Controller
      $request->validate(['summary' =>'required','description' =>'required']);
     Ticket::create(['summary'=> request('summary'),
         'description'=> request('description'),
-        'status'=>'open',
+        'status'=>'Open',
         'raised_on'=> Carbon::now(),
         'raised_by'=> session()->get('username'),
         'priority' =>'High'

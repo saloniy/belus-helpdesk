@@ -35,29 +35,13 @@
         <tbody>
         @foreach($data as $d)
         <tr>
-            <th scope="row">1</th>
+            <th scope="row">{{$d->id}}</th>
             <td>{{$d->summary}}</td>
             <td>{{$d->status}}</td>
             <td>{{$d->raised_on}}</td>
             <td><button class="btn btn-secondary btn-danger">Close Ticket</button></td>
             <td><button class="btn btn-secondary btn-success">Open Ticket</button></td>
         </tr>
-{{--        <tr>--}}
-{{--            <th scope="row">2</th>--}}
-{{--            <td>Router restarting on its own</td>--}}
-{{--            <td>Open</td>--}}
-{{--            <td>13/03/2021</td>--}}
-{{--            <td><button class="btn btn-secondary btn-danger">Close Ticket</button></td>--}}
-{{--            <td><button class="btn btn-secondary btn-success">Open Ticket</button></td>--}}
-{{--        </tr>--}}
-{{--        <tr>--}}
-{{--            <th scope="row">2</th>--}}
-{{--            <td>Sites not accessible</td>--}}
-{{--            <td>Closed</td>--}}
-{{--            <td>07/07/2021</td>--}}
-{{--            <td><button class="btn btn-secondary btn-danger">Close Ticket</button></td>--}}
-{{--            <td><button class="btn btn-secondary btn-success">Open Ticket</button></td>--}}
-{{--        </tr>--}}
         @endforeach
         </tbody>
     </table>
