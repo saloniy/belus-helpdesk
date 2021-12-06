@@ -1,6 +1,7 @@
 <?php
 
 use \App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use \App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -47,5 +48,14 @@ Route::get('/ticket-details', [TicketController::class, 'getTicketDetails']);
 Route::get('/raise-ticket', [TicketController::class, 'raiseTicket']);
 
 Route::post('/raise-ticket',[TicketController::class,'createTicket']);
+
+Route::get('/contactus', [ContactController::class, 'getContact']);
+
+Route::post('/contactus', [ContactController::class, 'contactUs']);
+
+Route::get('/aboutus', [ContactController::class, 'aboutUs']);
+
+Route::get('/faq', [ContactController::class, 'faq']);
+
 
 
