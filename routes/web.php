@@ -28,6 +28,10 @@ Route::post('/new-user-signup', [AuthController::class, 'newUserSignup']);
 
 Route::get('/profile', [AuthController::class, 'profile']);
 
+Route::get('/profile-edit',[AuthController::class,'editProfile']);
+
+Route::post('/profile-save',[AuthController::class,'saveProfile']);
+
 Route::get('/admin-all-users', [AdminController::class, 'index']);
 
 Route::post('/admin-filter-users', [AdminController::class, 'filter']);
@@ -43,3 +47,5 @@ Route::get('/ticket-details', [TicketController::class, 'getTicketDetails']);
 Route::get('/raise-ticket', [TicketController::class, 'raiseTicket']);
 
 Route::post('/raise-ticket',[TicketController::class,'createTicket']);
+
+
