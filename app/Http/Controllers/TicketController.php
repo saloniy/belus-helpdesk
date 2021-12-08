@@ -6,6 +6,8 @@ use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
@@ -36,10 +38,13 @@ class TicketController extends Controller
         }
     }
 
-    public function getTicketDetails() {
+    public function getTicketDetails(Request $request) {
         $isSession = self::validateSession();
         if($isSession) {
-            return view('ticket/ticket-details');
+            $csr = session()->get('CSRcheck');
+            $cdata =  Comment::all()->where('ticket_ref', '=', $request->route('id'))->values();
+            $data = DB::table('tickets')->join('users', 'tickets.raised_by', '=', 'users.email')->where('tickets.id', '=', $request->route('id'))->get()->values();
+            return view('ticket/ticket-details',compact('data', 'cdata', 'csr'));
         } else {
             return redirect('/');
         }
@@ -53,7 +58,6 @@ class TicketController extends Controller
         } else {
             return redirect('/');
         }
-
     }
 
     public  function createTicket(Request $request){
@@ -66,5 +70,14 @@ class TicketController extends Controller
         'priority' =>'High'
     ]);
         return redirect('raise-ticket')->with('message','Ticket Raised Succesfully');
+    }
+
+    public  function storeComments(Request $request){
+
+        Comment::create(['ticket_ref'=> request('ticket_id'),
+            'comment_text'=> request('comment'),
+            'added_on'=> Carbon::now()
+        ]);
+        return redirect('ticket-details/'.request('ticket_id'))->with('message','Comment Saved Succesfully');
     }
 }
