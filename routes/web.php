@@ -1,6 +1,7 @@
 <?php
 
 use \App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use \App\Http\Controllers\TicketController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,10 @@ Route::post('/new-user-signup', [AuthController::class, 'newUserSignup']);
 
 Route::get('/profile', [AuthController::class, 'profile']);
 
+Route::get('/profile-edit',[AuthController::class,'editProfile']);
+
+Route::post('/profile-save',[AuthController::class,'saveProfile']);
+
 Route::get('/admin-all-users', [AdminController::class, 'index']);
 
 Route::post('/admin-filter-users', [AdminController::class, 'filter']);
@@ -45,3 +50,14 @@ Route::post('/ticket-details', [TicketController::class, 'storeComments']);
 Route::get('/raise-ticket', [TicketController::class, 'raiseTicket']);
 
 Route::post('/raise-ticket',[TicketController::class,'createTicket']);
+
+Route::get('/contactus', [ContactController::class, 'getContact']);
+
+Route::post('/contactus', [ContactController::class, 'contactUs']);
+
+Route::get('/aboutus', [ContactController::class, 'aboutUs']);
+
+Route::get('/faq', [ContactController::class, 'faq']);
+
+
+

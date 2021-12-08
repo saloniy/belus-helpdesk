@@ -21,10 +21,10 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href="{{url('aboutus')}}">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Help</a>
+                        <a class="nav-link" href="{{url('faq')}}">Help</a>
                     </li>
                     @if (session()->get('username')) {
                         <!-- show my profile when user logs in-->
@@ -33,7 +33,7 @@
                                 My Profile
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                                <li><a class="dropdown-item" href="/profile">View Profile</a></li>
                                 <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             </ul>
                         </li>
@@ -52,6 +52,9 @@
             @yield('ticketsSummary')
             @yield('raiseTicket')
             @yield('ticketDetails')
+            @yield(('getContact'))
+            @yield('aboutUs')
+            @yield('faq')
             @yield('adminAllUsers')
         </div>
     </div>

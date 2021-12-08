@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Contact;
 use App\Models\Ticket;
+use http\Message;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
@@ -71,6 +74,7 @@ class TicketController extends Controller
     ]);
         return redirect('raise-ticket')->with('message','Ticket Raised Succesfully');
     }
+
 
     public  function storeComments(Request $request){
 
