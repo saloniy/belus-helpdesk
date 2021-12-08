@@ -9,7 +9,6 @@ use http\Message;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
-use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
