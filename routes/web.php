@@ -43,7 +43,9 @@ Route::post('/admin-assign-ticket', [AdminController::class, 'assignTicket']);
 
 Route::get('/tickets-summary', [TicketController::class, 'getTicketsSummary']);
 
-Route::get('/ticket-details', [TicketController::class, 'getTicketDetails']);
+Route::get('/ticket-details/{id}', [TicketController::class, 'getTicketDetails']);
+
+Route::post('/ticket-details', [TicketController::class, 'storeComments']);
 
 Route::get('/raise-ticket', [TicketController::class, 'raiseTicket']);
 

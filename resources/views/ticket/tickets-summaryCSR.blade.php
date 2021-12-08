@@ -28,6 +28,7 @@
             <th scope="col">Date Issue Raised <i class="fas fa-sort ms-2"></i></th>
             <th scope="col"> </th>
             <th scope="col"> </th>
+            <th scope="col"> </th>
 
 
         </tr>
@@ -41,6 +42,7 @@
             <td>{{$d->raised_on}}</td>
             <td><button class="btn btn-secondary btn-danger">Close Ticket</button></td>
             <td><button class="btn btn-secondary btn-success">Open Ticket</button></td>
+            <td><a href="{{url('/ticket-details/'.$d->id)}}" class="btn btn-warning" >View Ticket Details</a></td>
         </tr>
         @endforeach
         </tbody>
