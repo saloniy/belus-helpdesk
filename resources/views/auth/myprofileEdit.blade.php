@@ -28,7 +28,7 @@
                             <h6 class="mb-0">Full Name</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                            <input type = "text" name="name" value = "{{$d->name}}">
+                            <input type = "text" name="name" class="form-control" value = "{{$d->name}}">
 
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             <h6 class="mb-0">Password</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                            <input type = "text" name="password" value = "{{$d->password}}">
+                            <input type = "text" name="password" class="form-control" value = "{{$d->password}}">
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
                             <h6 class="mb-0">Email</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                            <input type = "text" name="email" value = "{{$d->email}}">
+                            <input type = "text" name="email" class="form-control" value = "{{$d->email}}">
 
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                             <h6 class="mb-0">Phone</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                            <input type = "text" name="contact" value = "{{$d->contact}}">
+                            <input type = "text" name="contact" class="form-control" maxlength="10" value = "{{$d->contact}}">
 
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                             <h6 class="mb-0">Address</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
-                            <input type = "text" name="address" value = "{{$d->address}}">
+                            <input type = "text" name="address" class="form-control" value = "{{$d->address}}">
                         </div>
                     </div>
                     <hr>
