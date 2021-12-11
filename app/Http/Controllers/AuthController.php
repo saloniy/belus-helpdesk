@@ -48,7 +48,7 @@ class AuthController extends Controller
             ], [
                 'email.required' => 'Please enter registered email.',
             ]);
-            $data = User::all(['email', 'password', 'isCustomer', 'isAdmin'])->where('email', '=', $request->email)->where('password', '=', $request->password)->where('isCustomer', '=', '1')->values();
+            $data = User::all(['name', 'email', 'password', 'isCustomer', 'isAdmin'])->where('email', '=', $request->email)->where('password', '=', $request->password)->where('isCustomer', '=', '1')->values();
         } else {
             $request->validate([
                 'csrEmail' => 'required|email:rfc',
@@ -57,10 +57,11 @@ class AuthController extends Controller
                 'csrEmail.required' => 'Please enter registered email.',
                 'csrPassword.required' => 'The password field is required.'
             ]);
-            $data = User::all(['email', 'password', 'isCustomer', 'isAdmin'])->where('email', '=', $request->csrEmail)->where('password', '=', $request->csrPassword)->where('isCustomer', '=', '0')->values();
+            $data = User::all(['name', 'email', 'password', 'isCustomer', 'isAdmin'])->where('email', '=', $request->csrEmail)->where('password', '=', $request->csrPassword)->where('isCustomer', '=', '0')->values();
         }
         if (count($data) > 0) {
             session()->put('username', $isCustomer ? $request->email : $request->csrEmail);
+            session()->put('name', $data[0]['name']);
             session()->put('CSRcheck', $isCustomer ? false : true);
 
             if (!$isCustomer && $data[0]['isAdmin'] == 1) {
@@ -112,6 +113,7 @@ class AuthController extends Controller
             User::create($data);
             session()->put('username', $request->email);
             session()->put('CSRcheck', false);
+            session()->put('name', $request->name);
             return redirect('/tickets-summary');
         } catch (QueryException $e) {
             $errorCode = $e->errorInfo[1];
@@ -124,6 +126,8 @@ class AuthController extends Controller
     public function logout()
     {
         session()->forget('username');
+        session()->forget('CSRcheck');
+        session()->forget('name');
         return redirect('/');
     }
 
@@ -152,12 +156,14 @@ class AuthController extends Controller
     public function saveProfile(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:50',
             'email' => 'required|email:rfc',
             'contact' => 'required|numeric',
             'password' => 'required|min:8|max:15|regex:/^[A-Za-z0-9@#*%$!]*$/'
         ]);
         try {
+            if ($request->input('address') == "") {
+                $request['address'] = "";
+            }
             $updatedData = $request->all();
             $data = User::all()->where('email', '=', session()->get('username'))->first();
             $data->update($updatedData);

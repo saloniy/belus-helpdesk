@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class TicketController extends Controller
 {
@@ -64,26 +65,59 @@ class TicketController extends Controller
         }
     }
 
-    public  function createTicket(Request $request){
-     $request->validate(['summary' =>'required','description' =>'required']);
-    Ticket::create(['summary'=> request('summary'),
-        'description'=> request('description'),
-        'status'=>'Open',
-        'raised_on'=> Carbon::now(),
-        'raised_by'=> session()->get('username'),
-        'assigned_to'=> '',
-        'priority' =>'High'
-    ]);
+    public function createTicket(Request $request) {
+        $request->validate(['summary' =>'required','description' =>'required']);
+        Ticket::create(['summary'=> request('summary'),
+            'description'=> request('description'),
+            'status'=>'Open',
+            'raised_on'=> Carbon::now(),
+            'raised_by'=> session()->get('username'),
+            'assigned_to'=> '',
+            'priority' =>'High'
+        ]);
         return redirect('raise-ticket')->with('message','Ticket Raised Succesfully');
     }
 
 
-    public  function storeComments(Request $request){
-
+    public function storeComments(Request $request) {
         Comment::create(['ticket_ref'=> request('ticket_id'),
             'comment_text'=> request('comment'),
-            'added_on'=> Carbon::now()
+            'added_on'=> Carbon::now(),
+            'comment_by' => session()->get('name')
         ]);
         return redirect('ticket-details/'.request('ticket_id'))->with('message','Comment Saved Succesfully');
+    }
+
+    public function mailTicket(Request $request) {
+        $isSession = self::validateSession();
+        if($isSession) {
+            $csr = session()->get('CSRcheck');
+            $cdata =  Comment::all()->where('ticket_ref', '=', $request->route('id'))->values();
+            $data = DB::table('tickets')->join('users', 'tickets.raised_by', '=', 'users.email')->where('tickets.id', '=', $request->route('id'))->get()->first();
+            $ticket_ref = $request->route('id');
+            return view('ticket/mail-details',compact('data', 'cdata', 'csr', 'ticket_ref'));
+        } else {
+            return redirect('/');
+        }
+    }
+
+    public function mailTicketDetails(Request $request) {
+        if($request->ajax()) {
+            $user = $request->input('user');
+            $userEmail = $request->input('userEmail');
+            $ticketId = $request->input('ticketId');
+            $status = $request->input('status');
+            $priority = $request->input('priority');
+            $description = $request->input('description');
+            $comments = $request->input('comments');
+            $addedComment = $request->input('additionalComment');
+            $data = ['name' => $user, 'raisedBy' => $userEmail, 'ticketId' => $ticketId, 'status'=> $status, 'priority' => $priority, 'description' => $description, 'comments' => $comments, 'addedComment' => $addedComment];
+            Mail::send('email.help-mail', compact('data'), function($message) use ($ticketId) {
+                $message->from(session()->get('username'));
+                $message->to('7faa1089fb9860@mailtrap.io');
+                $message->subject('Need help with ticket #' . $ticketId);
+            });
+            return "Done";
+        }
     }
 }

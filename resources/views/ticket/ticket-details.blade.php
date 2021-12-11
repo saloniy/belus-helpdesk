@@ -2,13 +2,16 @@
 @section('ticketDetails')
 <!--form content -->
 <div class="row mt-4">
-    <div class="col-sm-1">
+    <div class="col-sm-2">
         <!-- can be seen only by customer-->
-        @if($csr==false)
-        <button type="button" class="btn btn-success btn-sm">RE-OPEN</button>
-            @endif
+        @if($csr == false)
+            <button type="button" class="btn btn-success btn-sm">Re-open Ticket</button>
+        @endif
+        @if($csr == true)
+            <a href="{{url('mail-ticket', $ticket_ref)}}" class="btn btn-success btn-sm">Mail ticket details to supervisor</a>
+        @endif
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-7">
         <div>
             <b>Ticket #{{$ticket_ref}}</b>
         </div>
@@ -40,21 +43,21 @@
         @foreach($data as $d)
         <tr>
             <td class="fw-bold" colspan="2">Status : </td>
-            <td colspan="2">{{$d->status}}</td>
+            <td colspan="2" id="status">{{$d->status}}</td>
             <td class="fw-bold" colspan="2">User : </td>
-            <td class="text-end" > {{$d->name}} </td>
+            <td class="text-end" id="name"> {{$d->name}} </td>
         </tr>
         <tr>
             <td class="fw-bold"  colspan="2">Priority : </td>
-            <td colspan="2">{{$d->priority}}</td>
+            <td colspan="2" id="priority">{{$d->priority}}</td>
             <td class="fw-bold" colspan="2">Email : </td>
-            <td class="text-end"> {{$d->raised_by}}</td>
+            <td class="text-end" id="raisedBy"> {{$d->raised_by}}</td>
         </tr>
         <tr>
             <td class="fw-bold" colspan="2">Date Of Raise : </td>
-            <td colspan="2" > {{$d->raised_on}} </td>
+            <td colspan="2" id="raisedOn"> {{$d->raised_on}} </td>
             <td class="fw-bold" colspan="2">Complaint : </td>
-            <td class="text-end"> {{$d->description}} </td>
+            <td class="text-end" id="description"> {{$d->description}} </td>
         </tr>
         @endforeach
         </tbody>
@@ -63,17 +66,17 @@
     </div>
 </div>
 
-    <div class="form-group">
+    <div class="form-group" id="comments">
         @foreach($cdata as $c)
-        <textarea class="form-control" rows="1">#{{$c->added_on}} - {{$c->comment_text}}.</textarea>
+        <textarea readonly class="form-control" rows="1">#{{$c->added_on}} : {{$c->comment_by}} - {{$c->comment_text}}.</textarea>
         @endforeach
         <form action="/ticket-details" method="post">
             @csrf
             <input type="hidden" name="ticket_id" value="{{$ticket_ref}}">
-        <textarea class="form-control" id="comment" name="comment" rows="2" placeholder="Enter your comment"></textarea>
-        <div class="text-end mt-3">
-            <button type="submit" class="btn btn-primary">Save Comment</button>
-        </div>
+            <textarea class="form-control" id="comment" name="comment" rows="2" placeholder="Enter your comment"></textarea>
+            <div class="text-end mt-3">
+                <button type="submit" class="btn btn-primary">Save Comment</button>
+            </div>
        </form>
 
     </div>
