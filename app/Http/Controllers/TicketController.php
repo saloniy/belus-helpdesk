@@ -69,6 +69,7 @@ class TicketController extends Controller
         'status'=>'Open',
         'raised_on'=> Carbon::now(),
         'raised_by'=> session()->get('username'),
+        'assigned_to'=> '',
         'priority' =>'High'
     ]);
         return redirect('raise-ticket')->with('message','Ticket Raised Succesfully');
