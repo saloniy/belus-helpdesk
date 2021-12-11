@@ -158,7 +158,7 @@ class AuthController extends Controller
             $data = User::all()->where('email', '=', session()->get('username'))->first();
             $data->update($updatedData);
             $data->save();
-            session()->put('username', $updatedData[0]->email);
+            session()->put('username', $request->input('email'));
             return redirect("/profile");
         }
     }
