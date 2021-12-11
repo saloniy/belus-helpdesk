@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+@php(session_start())@endphp
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{!! csrf_token() !!}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{{secure_asset('css/styles.css')}}">
+    <link rel="stylesheet" href="{{asset('css/styles.css')}}">
 </head>
 <body>
     <!--header content -->
@@ -52,6 +52,7 @@
             @yield('ticketsSummary')
             @yield('raiseTicket')
             @yield('ticketDetails')
+            @yield('mail')
             @yield(('getContact'))
             @yield('aboutUs')
             @yield('faq')
@@ -87,8 +88,8 @@
     <!--footer content ends-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="{{secure_asset('js/ajaxCalls.js')}}" type="text/javascript"></script>
-    <script src="{{secure_asset('js/scripts.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/ajaxCalls.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/scripts.js')}}" type="text/javascript"></script>
 </body>
 
 </html>

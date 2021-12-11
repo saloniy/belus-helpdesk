@@ -18,7 +18,7 @@
 
             <!--Grid column-->
             <div class="col-md-9 mb-md-0 mb-5">
-                <form   action="{{url('contactus')}}" method="post">
+                <form action="{{url('contactus')}}" method="post">
                 @csrf
 
                     <!--Grid row-->
