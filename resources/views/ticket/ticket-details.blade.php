@@ -10,10 +10,10 @@
     </div>
     <div class="col-sm-8">
         <div>
-            <b>Ticket #{{$cdata[0]->ticket_ref}}</b>
+            <b>Ticket #{{$ticket_ref}}</b>
         </div>
         <div>
-            Reported by : {{$data[0]->name}}
+            Reported by : {{$reporter}}
         </div>
     </div>
     <!-- can be seen only by CSR -->
@@ -69,7 +69,7 @@
         @endforeach
         <form action="/ticket-details" method="post">
             @csrf
-            <input type="hidden" name="ticket_id" value="{{$cdata[0]->ticket_ref}}">
+            <input type="hidden" name="ticket_id" value="{{$ticket_ref}}">
         <textarea class="form-control" id="comment" name="comment" rows="2" placeholder="Enter your comment"></textarea>
         <div class="text-end mt-3">
             <button type="submit" class="btn btn-primary">Save Comment</button>
