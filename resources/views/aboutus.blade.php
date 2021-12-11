@@ -38,7 +38,7 @@
                 <h2>Praveen Sudarsanan</h2>
                 <p class="title">Developer</p>
                 <p>Praveen has been at Belus for 1 year and has been an asset to the firm for re-vamping the look of their websites.</p>
-                <p>john@example.com</p>
+                <p>praveen@belus.ca</p>
                 <p><button class="btn btn-primary">Contact</button></p>
             </div>
         </div>
