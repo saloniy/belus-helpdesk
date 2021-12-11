@@ -46,7 +46,9 @@ class TicketController extends Controller
             $csr = session()->get('CSRcheck');
             $cdata =  Comment::all()->where('ticket_ref', '=', $request->route('id'))->values();
             $data = DB::table('tickets')->join('users', 'tickets.raised_by', '=', 'users.email')->where('tickets.id', '=', $request->route('id'))->get()->values();
-            return view('ticket/ticket-details',compact('data', 'cdata', 'csr'));
+            $ticket_ref = $request->route('id');
+            $reporter = $data[0]->name;
+            return view('ticket/ticket-details',compact('data', 'cdata', 'csr', 'ticket_ref', 'reporter'));
         } else {
             return redirect('/');
         }
@@ -69,6 +71,7 @@ class TicketController extends Controller
         'status'=>'Open',
         'raised_on'=> Carbon::now(),
         'raised_by'=> session()->get('username'),
+        'assigned_to'=> '',
         'priority' =>'High'
     ]);
         return redirect('raise-ticket')->with('message','Ticket Raised Succesfully');
