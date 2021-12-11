@@ -15,7 +15,7 @@
                 <p class="title">Manager/Developer</p>
                 <p>Saloni has been at Belus for 5 years and manages the platform which enables Belus to be the leader in customer service.</p>
                 <p>saloni@belus.ca</p>
-                <p><button class="button">Contact</button></p>
+                <p><button class="btn btn-primary">Contact</button></p>
             </div>
         </div>
     </div>

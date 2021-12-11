@@ -1,6 +1,6 @@
 @extends('layout/main')
 @section('faq')
-    <div class="wrapper bg-white rounded shadow">
+    <div class="wrapper bg-white rounded shadow mt-3">
         <div class="h3 text-primary text-center">How can we help you?</div>
 
         <div class="accordion accordion-flush border-top border-start border-end" id="myAccordion">
