@@ -151,16 +151,26 @@ class AuthController extends Controller
 
     public function saveProfile(Request $request)
     {
-        $isSession = self::validateSession();
-
-        if ($isSession) {
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'email' => 'required|email:rfc',
+            'contact' => 'required|numeric',
+            'password' => 'required|min:8|max:15|regex:/^[A-Za-z0-9@#*%$!]*$/'
+        ]);
+        try {
             $updatedData = $request->all();
             $data = User::all()->where('email', '=', session()->get('username'))->first();
             $data->update($updatedData);
             $data->save();
             session()->put('username', $request->input('email'));
             return redirect("/profile");
+        } catch (QueryException $e) {
+            $errorCode = $e->errorInfo[1];
+            if ($errorCode == '1062') {
+                return redirect('/profile-edit')->withErrors(['emailExists' => 'The email ID is registered with another user. Please use another ID']);
+            }
         }
+
     }
 }
 
