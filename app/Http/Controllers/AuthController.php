@@ -154,23 +154,14 @@ class AuthController extends Controller
         $isSession = self::validateSession();
 
         if ($isSession) {
-            $data1 = $request->all();
-//            $name = $request->input('name');
-//            $email = $request->input('email');
-//            $password = $request->input('password');
-//
-//            $address = $request->input('address');
-//            $contact = $request->input('contact');
+            $updatedData = $request->all();
             $data = User::all()->where('email', '=', session()->get('username'))->first();
-
-
-           //$data->update(['name' => $name, 'email' => $email, 'address' => $address, 'contact' => $contact, 'password' => $password]);
-            $data->update($data1);
+            $data->update($updatedData);
             $data->save();
-           return redirect("/profile");
-
+            session()->put('username', $updatedData->email);
+            return redirect("/profile");
         }
     }
 }
-    
+
 
