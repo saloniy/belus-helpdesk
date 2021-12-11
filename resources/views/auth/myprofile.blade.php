@@ -7,13 +7,11 @@
             <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-
                     <div class="mt-3">
                         @foreach($data as $d)
-
                         <h4>{{$d->name}}</h4>
                         <p class="text-muted font-size-sm">{{$d->address}}</p>
-
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -23,6 +21,7 @@
     <div class="col-md-8">
         <div class="card mb-3">
             <div class="card-body">
+                @foreach($data as $d)
                 <div class="row">
                     <div class="col-sm-3">
                         <h6 class="mb-0">Full Name</h6>
@@ -77,6 +76,7 @@
                         {{$d->address}}
                     </div>
                 </div>
+                @endforeach
                 <hr>
                 <div class="row">
                     <div class="col-sm-12">
@@ -87,6 +87,5 @@
         </div>
     </div>
 </div>
-@endforeach
 @endsection
 
