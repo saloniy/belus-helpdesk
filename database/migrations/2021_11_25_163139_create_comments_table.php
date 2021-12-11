@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->foreign('ticket_ref')->references('id')->on('tickets');
             $table->dateTime('added_on')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->string('comment_text', 150);
+            $table->string('comment_by', 50);
         });
     }
 

@@ -7,7 +7,6 @@
                 <div class="card-body">
                     <div class="d-flex flex-column align-items-center text-center">
                         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
-
                         <div class="mt-3">
                             @foreach($data as $d)
                                 <h4></h4>
@@ -31,10 +30,7 @@
                                 <h6 class="mb-0">Full Name</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name') ? old('name') : $d->name}}">
-                                @error('name')
-                                <div class="error-msg">{{ $message }}</div>
-                                @enderror
+                                <input type="text" name="name" class="form-control" readonly value="{{$d->name}}">
                             </div>
                         </div>
                         <hr>

@@ -52,6 +52,7 @@
             @yield('ticketsSummary')
             @yield('raiseTicket')
             @yield('ticketDetails')
+            @yield('mail')
             @yield(('getContact'))
             @yield('aboutUs')
             @yield('faq')
