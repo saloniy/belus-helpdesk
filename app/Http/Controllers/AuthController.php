@@ -161,6 +161,9 @@ class AuthController extends Controller
             'password' => 'required|min:8|max:15|regex:/^[A-Za-z0-9@#*%$!]*$/'
         ]);
         try {
+            if ($request->input('address') == "") {
+                $request['address'] = "";
+            }
             $updatedData = $request->all();
             $data = User::all()->where('email', '=', session()->get('username'))->first();
             $data->update($updatedData);

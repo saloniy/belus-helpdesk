@@ -34,7 +34,7 @@ function sendMail() {
     var comments = ""
     var successMsgDiv = $('#success-msg');
     $('#comments textarea').each(function(){
-        comments += ($(this).val() + "\n");
+        comments += ($(this).val() + "\n\n");
     });
     $.post('/mail-ticket-details', {user: user, userEmail: userEmail, ticketId: ticketId, status: status, priority: priority, description: description, comments: comments, additionalComment: additionalComment}).done(function(data) {
         if(data == "Done") {

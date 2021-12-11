@@ -52,7 +52,7 @@
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email') ? old('email') : $d->email}}">
+                                <input type="email" @if(session()->get('CSRcheck')) readonly @endif name="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email') ? old('email') : $d->email}}">
                                 @error('email')
                                 <div class="error-msg">{{ $message }}</div>
                                 @enderror
