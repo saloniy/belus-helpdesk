@@ -13,8 +13,6 @@
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-item">Open</li>
-                <li class="dropdown-item">In-Progress</li>
-                <li class="dropdown-item">Resolved</li>
                 <li class="dropdown-item">Closed</li>
             </ul>
         </div>
@@ -27,8 +25,6 @@
             <th scope="col">Issue Status</th>
             <th scope="col">Date Issue Raised <i class="fas fa-sort ms-2"></i></th>
             <th scope="col"> </th>
-            <th scope="col"> </th>
-            <th scope="col"> </th>
 
 
         </tr>
@@ -40,8 +36,6 @@
             <td>{{$d->summary}}</td>
             <td>{{$d->status}}</td>
             <td>{{$d->raised_on}}</td>
-            <td><button class="btn btn-secondary btn-danger">Close Ticket</button></td>
-            <td><button class="btn btn-secondary btn-success">Open Ticket</button></td>
             <td><a href="{{url('/ticket-details/'.$d->id)}}" class="btn btn-warning" >View Ticket Details</a></td>
         </tr>
         @endforeach

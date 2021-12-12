@@ -5,7 +5,11 @@
     <div class="col-sm-2">
         <!-- can be seen only by customer-->
         @if($csr == false)
-            <button type="button" class="btn btn-success btn-sm">Re-open Ticket</button>
+            <form action="/ticket-details" method="post">
+                @csrf
+                <input type="hidden" name="ticket_id" value="{{$ticket_ref}}">
+            <button type="submit" name="btnOpen" class="btn btn-success btn-sm">Re-open Ticket</button>
+            </form>
         @endif
         @if($csr == true)
             <a href="{{url('mail-ticket', $ticket_ref)}}" class="btn btn-success btn-sm">Mail ticket details to supervisor</a>
@@ -24,8 +28,12 @@
 
     @if($csr==true)
     <div class="col-sm-3">
-        <button type="button" class="btn btn-warning  btn-lg">Close</button>
-        <button type="button" class="btn btn-danger  btn-lg">Delete</button>
+        <form action="/ticket-details" method="post">
+            @csrf
+            <input type="hidden" name="ticket_id" value="{{$ticket_ref}}">
+        <button type="submit" name="btnClose" class="btn btn-warning  btn-lg">Close</button>
+        <button type="submit" name="btnDel" class="btn btn-danger  btn-lg">Delete</button>
+        </form>
     </div>
     @endif
     <!-- end -->
