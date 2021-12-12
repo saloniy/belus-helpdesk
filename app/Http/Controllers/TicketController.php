@@ -27,6 +27,7 @@ class TicketController extends Controller
         $isSession = self::validateSession();
         if($isSession ) {
                 $csrCheck = session()->get('CSRcheck');
+
                 if($csrCheck){
                     $data = Ticket::all()->where('assigned_to', '=', session()->get('username'));
                     return view('ticket/tickets-summaryCSR',['data' => $data]);
@@ -80,12 +81,29 @@ class TicketController extends Controller
 
 
     public function storeComments(Request $request) {
-        Comment::create(['ticket_ref'=> request('ticket_id'),
-            'comment_text'=> request('comment'),
-            'added_on'=> Carbon::now(),
-            'comment_by' => session()->get('name')
-        ]);
-        return redirect('ticket-details/'.request('ticket_id'))->with('message','Comment Saved Succesfully');
+        if (isset($_POST['btnClose'])) {
+            Ticket::where('id',request('ticket_id'))->update(array(
+                'status'=>'CLOSED'
+            ));
+            return redirect('ticket-details/' . request('ticket_id'))->with('message', 'Ticket Closed');
+        } else if(isset($_POST['btnDel'])) {
+            Ticket::where('id', request('ticket_id'))->delete();
+            return redirect('tickets-summary')->with('message', 'Ticket Deleted');
+        }
+        else if(isset($_POST['btnOpen'])) {
+                Ticket::where('id',request('ticket_id'))->update(array(
+                    'status'=>'OPEN'
+                ));
+                return redirect('ticket-details/' . request('ticket_id'))->with('message', 'Ticket Opened');
+        }
+        else {
+            Comment::create(['ticket_ref' => request('ticket_id'),
+                'comment_text' => request('comment'),
+                'added_on' => Carbon::now(),
+                'comment_by' => session()->get('name')
+            ]);
+            return redirect('ticket-details/' . request('ticket_id'))->with('message', 'Comment Saved Succesfully');
+        }
     }
 
     public function mailTicket(Request $request) {

@@ -13,8 +13,6 @@
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-item">Open</li>
-                <li class="dropdown-item">In-Progress</li>
-                <li class="dropdown-item">Resolved</li>
                 <li class="dropdown-item">Closed</li>
             </ul>
         </div>
