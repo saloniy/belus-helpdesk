@@ -5,7 +5,7 @@
         <div class="col d-flex justify-content-center">
             <div class="card login-card mt-3">
                 <div class="card-body">
-                    <h5 class="card-title">Sign Up</h5>
+                    <h5 class="card-title">CREATE CSR ACCOUNT</h5>
 
                     <form method="post" action="{{url('new-csr-save')}}" novalidate>
 

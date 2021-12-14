@@ -6,7 +6,7 @@
         <div class="col d-flex justify-content-center">
             <div class="card login-card mt-3">
                 <div class="card-body">
-                    <h5 class="card-title">Sign Up</h5>
+                    <h5 class="card-title">Edit Account Details</h5>
 
 
                     <form method="post" action="{{url('updated-csr-account')}}" novalidate>
@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Edit Account</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
                         </div>
                     </form>
                 </div>
