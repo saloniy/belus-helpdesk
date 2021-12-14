@@ -27,11 +27,12 @@
             <th scope="col">#</th>
             <th scope="col">Issue Summary</th>
             <th scope="col">Issue Status</th>
-            <th scope="col">Date Issue Raised <i class="fas fa-sort ms-2"></i></th>
+            <th scope="col" onClick="sortByDate()">Date Issue Raised <i class="fas fa-sort ms-2"></i></th>
             <th scope="col"></th>
         </tr>
         </thead>
         <tbody id="allTicketdata">
+
         @foreach($data as $d)
             <tr>
                 <th scope="row">{{$d->id}}</th>

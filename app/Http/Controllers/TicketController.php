@@ -141,9 +141,23 @@ class TicketController extends Controller
 
     public function filter(Request $request) {
         if($request->ajax()) {
-            $type = $request->input('status')  ;
-            $data = Ticket::all()->where('status', '=', $type)->values();
-            return view('filtered-ticketssummary')->with('data', $data);
+            $type = $request->input('type');
+            $data = Ticket::all()->where('status', '=', $type)->where('raised_by', '=', session()->get('username'))->values();
+            return view('ticket.filtered-ticketssummary')->with('data', $data);
+        }
+    }
+    public function filterForCsr(Request $request) {
+        if($request->ajax()) {
+            $type = $request->input('type');
+            $data = Ticket::all()->where('status', '=', $type)->where('assigned_to', '=', session()->get('username'))->values();
+            return view('ticket.filtered-ticketssummary')->with('data', $data);
+        }
+
+    }
+    public function sort(Request $request){
+        if($request->ajax()) {
+            $tickets= Ticket::orderBy('raised_on', 'ASC')->get()->where('assigned_to', '=', session()->get('username'))->values();
+            return view('ticket.filtered-ticketssummary')->with('data', $tickets);
         }
     }
 }

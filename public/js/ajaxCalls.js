@@ -4,6 +4,8 @@ $.ajaxSetup({
     }
 });
 
+var sort = 'asc';
+
 function filterByUserType(type){
     $.post('/admin-filter-users', {type: type}).done(function(data) {
         $('#allUsersData').html(data);
@@ -47,7 +49,22 @@ function sendMail() {
 }
 
 function filterByStatus(type){
+    console.log(type);
     $.post('/filter-ticket', {type: type}).done(function(data) {
         $('#allTicketdata').html(data);
     })
+}
+
+function sortByDate() {
+    if(sort == 'asc') {
+        sort = 'desc';
+        $.post('/sort', {type: sort}).done(function(data) {
+            $('#sortdata').html(data);
+        })
+    } else {
+        sort = 'asc'
+        $.post('/sort', {type: sort}).done(function(data) {
+             $('#sortdata').html(data);
+        })
+    }
 }

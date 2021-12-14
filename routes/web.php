@@ -53,6 +53,10 @@ Route::post('/raise-ticket',[TicketController::class,'createTicket']);
 
 Route::post('/filter-ticket', [TicketController::class, 'filter']);
 
+Route::post('/filter-ticket-csr', [TicketController::class, 'filterForCsr']);
+
+Route::post('/sort', [TicketController::class, 'sort']);
+
 Route::get('/mail-ticket/{id}',[TicketController::class,'mailTicket']);
 
 Route::post('/mail-ticket-details',[TicketController::class,'mailTicketDetails']);
