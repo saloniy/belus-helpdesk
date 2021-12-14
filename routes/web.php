@@ -66,4 +66,15 @@ Route::get('/aboutus', [ContactController::class, 'aboutUs']);
 Route::get('/faq', [ContactController::class, 'faq']);
 
 
+Route::get('/new-csr-signup', [AdminController::class, 'newCsrSignup']);
+
+Route::post('/new-csr-save',[AdminController::class,'saveCsrProfile']);
+
+Route::get('/update-csr-account/{id}',[AdminController::class,'updateCsrAccount']);
+
+Route::post('/updated-csr-account',[AdminController::class,'updatedCsrAccount']);
+
+Route::get('/delete-csr-account/{id}',[AdminController::class,'deleteCsrAccount']);
+
+
 
