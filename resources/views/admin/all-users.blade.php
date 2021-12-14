@@ -17,7 +17,7 @@
                 </ul>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <a href="{{url('create-csr-account')}}" class="btn btn-success me-3" >Create CSR Account</a>
+                <a href="{{url('new-csr-signup')}}" class="btn btn-success me-3" >Create CSR Account</a>
                 <a href="{{url('admin-all-open-tickets')}}" class="btn btn-primary" >View Open Tickets</a>
             </div>
         </div>
@@ -47,8 +47,8 @@
                     <td>{{$d->email}}</td>
                     <td>
                         @if(!($d->isCustomer))
-                            <a class="btn btn-primary">Update Account</a>
-                            <a class="btn btn-danger">Delete Account</a>
+                            <a href="{{url('update-csr-account', $d->id)}}" class="btn btn-primary">Update Account</a>
+                            <a href="{{url('delete-csr-account', $d->id)}}" class="btn btn-danger">Delete Account</a>
                         @endif
                     </td>
                 </tr>
