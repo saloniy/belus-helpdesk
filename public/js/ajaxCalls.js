@@ -49,22 +49,14 @@ function sendMail() {
 }
 
 function filterByStatus(type){
-    console.log(type);
     $.post('/filter-ticket', {type: type}).done(function(data) {
         $('#allTicketdata').html(data);
     })
 }
 
 function sortByDate() {
-    if(sort == 'asc') {
-        sort = 'desc';
-        $.post('/sort', {type: sort}).done(function(data) {
-            $('#sortdata').html(data);
-        })
-    } else {
-        sort = 'asc'
-        $.post('/sort', {type: sort}).done(function(data) {
-             $('#sortdata').html(data);
-        })
-    }
+    sort = sort == 'asc' ? 'desc' : 'asc';
+    $.post('/sort', {sortType: sort}).done(function(data) {
+        $('#allTicketdata').html(data);
+    })
 }
