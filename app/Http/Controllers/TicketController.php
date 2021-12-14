@@ -138,4 +138,12 @@ class TicketController extends Controller
             return "Done";
         }
     }
+
+    public function filter(Request $request) {
+        if($request->ajax()) {
+            $type = $request->input('status')  ;
+            $data = Ticket::all()->where('status', '=', $type)->values();
+            return view('filtered-ticketssummary')->with('data', $data);
+        }
+    }
 }

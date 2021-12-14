@@ -45,3 +45,9 @@ function sendMail() {
         }
     })
 }
+
+function filterByStatus(type){
+    $.post('/filter-ticket', {type: type}).done(function(data) {
+        $('#allTicketdata').html(data);
+    })
+}
