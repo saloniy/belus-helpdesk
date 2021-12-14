@@ -83,7 +83,7 @@ class TicketController extends Controller
     public function storeComments(Request $request) {
         if (isset($_POST['btnClose'])) {
             Ticket::where('id',request('ticket_id'))->update(array(
-                'status'=>'CLOSED'
+                'status'=>'Closed'
             ));
             return redirect('ticket-details/' . request('ticket_id'))->with('message', 'Ticket Closed');
         } else if(isset($_POST['btnDel'])) {
@@ -92,7 +92,7 @@ class TicketController extends Controller
         }
         else if(isset($_POST['btnOpen'])) {
                 Ticket::where('id',request('ticket_id'))->update(array(
-                    'status'=>'OPEN'
+                    'status'=>'Open'
                 ));
                 return redirect('ticket-details/' . request('ticket_id'))->with('message', 'Ticket Opened');
         }
