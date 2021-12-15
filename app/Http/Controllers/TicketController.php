@@ -27,6 +27,7 @@ class TicketController extends Controller
         $isSession = self::validateSession();
         if($isSession ) {
                 $csrCheck = session()->get('CSRcheck');
+
                 if($csrCheck){
                     $data = Ticket::all()->where('assigned_to', '=', session()->get('username'));
                     return view('ticket/tickets-summaryCSR',['data' => $data]);
@@ -80,12 +81,29 @@ class TicketController extends Controller
 
 
     public function storeComments(Request $request) {
-        Comment::create(['ticket_ref'=> request('ticket_id'),
-            'comment_text'=> request('comment'),
-            'added_on'=> Carbon::now(),
-            'comment_by' => session()->get('name')
-        ]);
-        return redirect('ticket-details/'.request('ticket_id'))->with('message','Comment Saved Succesfully');
+        if (isset($_POST['btnClose'])) {
+            Ticket::where('id',request('ticket_id'))->update(array(
+                'status'=>'Closed'
+            ));
+            return redirect('ticket-details/' . request('ticket_id'))->with('message', 'Ticket Closed');
+        } else if(isset($_POST['btnDel'])) {
+            Ticket::where('id', request('ticket_id'))->delete();
+            return redirect('tickets-summary')->with('message', 'Ticket Deleted');
+        }
+        else if(isset($_POST['btnOpen'])) {
+                Ticket::where('id',request('ticket_id'))->update(array(
+                    'status'=>'Open'
+                ));
+                return redirect('ticket-details/' . request('ticket_id'))->with('message', 'Ticket Opened');
+        }
+        else {
+            Comment::create(['ticket_ref' => request('ticket_id'),
+                'comment_text' => request('comment'),
+                'added_on' => Carbon::now(),
+                'comment_by' => session()->get('name')
+            ]);
+            return redirect('ticket-details/' . request('ticket_id'))->with('message', 'Comment Saved Succesfully');
+        }
     }
 
     public function mailTicket(Request $request) {
@@ -118,6 +136,32 @@ class TicketController extends Controller
                 $message->subject('Need help with ticket #' . $ticketId);
             });
             return "Done";
+        }
+    }
+
+    public function filter(Request $request) {
+        if($request->ajax()) {
+            $type = $request->input('type');
+            $isCustomer = !session()->get('CSRcheck');
+            if($isCustomer) {
+                $data = Ticket::all()->where('status', '=', $type)->where('raised_by', '=', session()->get('username'))->values();
+            } else {
+                $data = Ticket::all()->where('status', '=', $type)->where('assigned_to', '=', session()->get('username'))->values();
+            }
+            return view('ticket.filtered-ticketssummary')->with('data', $data);
+        }
+    }
+
+    public function sort(Request $request){
+        if($request->ajax()) {
+            $sortType = strtoupper($request->input('sortType'));
+            $isCustomer = !session()->get('CSRcheck');
+            if($isCustomer) {
+                $tickets = Ticket::orderBy('raised_on', $sortType)->where('raised_by', session()->get('username'))->get();
+            } else {
+                $tickets = Ticket::orderBy('raised_on', $sortType)->where('assigned_to', session()->get('username'))->get();
+            }
+            return view('ticket.filtered-ticketssummary')->with('data', $tickets);
         }
     }
 }

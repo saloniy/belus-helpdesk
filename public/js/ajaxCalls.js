@@ -4,6 +4,8 @@ $.ajaxSetup({
     }
 });
 
+var sort = 'asc';
+
 function filterByUserType(type){
     $.post('/admin-filter-users', {type: type}).done(function(data) {
         $('#allUsersData').html(data);
@@ -43,5 +45,18 @@ function sendMail() {
                 successMsgDiv.addClass('hide').removeClass('show');
             }, 5000);
         }
+    })
+}
+
+function filterByStatus(type){
+    $.post('/filter-ticket', {type: type}).done(function(data) {
+        $('#allTicketdata').html(data);
+    })
+}
+
+function sortByDate() {
+    sort = sort == 'asc' ? 'desc' : 'asc';
+    $.post('/sort', {sortType: sort}).done(function(data) {
+        $('#allTicketdata').html(data);
     })
 }
