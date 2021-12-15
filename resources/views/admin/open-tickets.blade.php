@@ -28,6 +28,7 @@
                     <td>{{$ot->status}}</td>
                     <td>
                         <select class="form-select" onChange="assignToCsr({{$ot->id}})" id="assignedTo{{$ot->id}}">
+                            <option value="">Select Assignee</option>
                             @foreach($csr as $user)
                                 <option value="{{$user->email}}" @if($user->email == $ot->assigned_to) {{"selected"}} @endif>
                                     {{$user->name}} - {{$user->email}}
