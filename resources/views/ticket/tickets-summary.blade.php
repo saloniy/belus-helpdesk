@@ -12,8 +12,8 @@
                 <span><i class="fas fa-filter"></i> Filter by status</span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-item">Open</li>
-                <li class="dropdown-item">Closed</li>
+                <li onClick="filterByStatus('Open')"class="dropdown-item">Open</li>
+                <li onClick="filterByStatus('Closed')"class="dropdown-item">Closed</li>
             </ul>
         </div>
         <div class="col-6 d-flex justify-content-end">
@@ -27,11 +27,12 @@
             <th scope="col">#</th>
             <th scope="col">Issue Summary</th>
             <th scope="col">Issue Status</th>
-            <th scope="col">Date Issue Raised <i class="fas fa-sort ms-2"></i></th>
+            <th scope="col" onClick="sortByDate()">Date Issue Raised <i class="fas fa-sort ms-2"></i></th>
             <th scope="col"></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="allTicketdata">
+
         @foreach($data as $d)
             <tr>
                 <th scope="row">{{$d->id}}</th>

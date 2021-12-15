@@ -138,4 +138,30 @@ class TicketController extends Controller
             return "Done";
         }
     }
+
+    public function filter(Request $request) {
+        if($request->ajax()) {
+            $type = $request->input('type');
+            $isCustomer = !session()->get('CSRcheck');
+            if($isCustomer) {
+                $data = Ticket::all()->where('status', '=', $type)->where('raised_by', '=', session()->get('username'))->values();
+            } else {
+                $data = Ticket::all()->where('status', '=', $type)->where('assigned_to', '=', session()->get('username'))->values();
+            }
+            return view('ticket.filtered-ticketssummary')->with('data', $data);
+        }
+    }
+
+    public function sort(Request $request){
+        if($request->ajax()) {
+            $sortType = strtoupper($request->input('sortType'));
+            $isCustomer = !session()->get('CSRcheck');
+            if($isCustomer) {
+                $tickets = Ticket::orderBy('raised_on', $sortType)->where('raised_by', session()->get('username'))->get();
+            } else {
+                $tickets = Ticket::orderBy('raised_on', $sortType)->where('assigned_to', session()->get('username'))->get();
+            }
+            return view('ticket.filtered-ticketssummary')->with('data', $tickets);
+        }
+    }
 }
